@@ -8,11 +8,11 @@ var Employee = function(employee) {
     this.LastName = employee.LastName; 
     this.DesignationID = employee.DesignationID;
     this.designation = employee.designation;
-    this.JoiningDate = employee.JoiningDate;
+    this.JoiningDate = new Date(employee.JoiningDate);
     this.Username = employee.Username;
     this.UserPassword = employee.UserPassword;
     this.IsActive = employee.IsActive;
-    this.LeavingDate = employee.LeavingDate;
+    this.LeavingDate = new Date(employee.LeavingDate);
     this.EmpAddress = employee.EmpAddress;
     this.ContactNumber = employee.ContactNumber;
     this.EmpImage = employee.EmpImage;
@@ -56,7 +56,7 @@ Employee.findAll = function (result) {
 
 Employee.update = function (id, employee, result) {
     dbConn.query("UPDATE mstremployee SET EmpID = ?, FirstName = ?, LastName = ?, DesignationID = ?, JoiningDate = ?, Username = ?, UserPassword = ?, IsActive = ?, LeavingDate = ?, EmpAddress = ?, ContactNumber = ?, EmpImage = ?, IsAdmin = ? WHERE ID = ?",
-    [employee.EmpID, employee.FirstName, employee.LastName, employee.DesignationID, employee.JoiningDate, employee.Username, employee.UserPassword, employee.IsActive, employee.LeavingDate, employee.EmpAddress, employee.ContactNumber, employee.EmpImage, employee.IsAdmin, id], function (err, res) {
+    [employee.EmpID, employee.FirstName, employee.LastName, employee.DesignationID, new Date(employee.JoiningDate), employee.Username, employee.UserPassword, employee.IsActive, new Date(employee.LeavingDate), employee.EmpAddress, employee.ContactNumber, employee.EmpImage, employee.IsAdmin, id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

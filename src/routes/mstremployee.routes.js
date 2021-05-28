@@ -5,7 +5,8 @@ const employeeController =   require('../controllers/mstremployee.controller');
 router.get('/', employeeController.findAll);
 router.post('/', employeeController.create);
 router.get('/:id', employeeController.findById);
-router.put('/:id', employeeController.update);
+//router.put('/:id', employeeController.update);
+router.post('/update/:id', employeeController.update);
 router.delete('/:id', employeeController.delete);
 
 module.exports = router;
